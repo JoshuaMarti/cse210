@@ -1,0 +1,1 @@
+//Asks the user for a password, creates a new journal file, gets the hash of the password, stores the hashed password in the journal file, sets the path to that file as the active path in properties.

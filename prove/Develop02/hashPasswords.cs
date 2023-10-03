@@ -1,0 +1,1 @@
+//This takes in a password as a plaintext string, reads the config file for the hashing method, and then hashes the password and returns the hash.

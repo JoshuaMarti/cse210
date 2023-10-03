@@ -1,0 +1,1 @@
+//Saves all the entries from the current file into a new file. Checks existing password, hashes it, and saves that too
