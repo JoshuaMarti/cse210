@@ -1,1 +1,2 @@
 //This takes in a password as a plaintext string, reads the config file for the hashing method, and then hashes the password and returns the hash.
+//Due to time limitations, the intended functionality of this file was not implemented in this project.

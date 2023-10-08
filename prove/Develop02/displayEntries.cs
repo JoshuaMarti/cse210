@@ -1,1 +1,2 @@
 //Takes the current entries (based on the path in the config file) and, upon the user providing the correct passwords, lists them and allows the user to pick one to view.
+//This file has been deprecated and the functionality implemented in Journal.cs and Program.cs

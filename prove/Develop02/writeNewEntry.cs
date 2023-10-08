@@ -1,1 +1,0 @@
-//This class goes through the process of writing a new journal entry by checking the password or setting it if this is a new file, asking if they want prompts and displaying prompts if so and allowing the user to respond to them. At the end, it saves the collection to the current file.
