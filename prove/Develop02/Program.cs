@@ -39,7 +39,8 @@ class Program
                 WriteNewEntry(Prompts, journal);
                 savedLastEntry = 0;}
             else if (_input == "2"){DisplayEntries(journal);}
-            else if (_input == "3"){SaveEntries(journal);}
+            else if (_input == "3"){SaveEntries(journal);
+            savedLastEntry = 1;}
             else if (_input == "4"){LoadEntries(journal);}
             else if (_input == "5"){CreateNewJournal();}
             else {}
