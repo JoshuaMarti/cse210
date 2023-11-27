@@ -5,14 +5,14 @@ public class Journal {
     public void InteractiveSetName() {
         Console.WriteLine();
         Console.Write("Please enter a Journal Name: ");
-        journal.JournalName = Console.ReadLine();
+        _name = Console.ReadLine();
     }
     private List<Entry> _entries = new List<Entry>();
     public void Display() {
         int _entryNumber = 1;
-        int _entryCount = Entries.Count();
+        int _entryCount = _entries.Count();
         string _next = "";
-        foreach (var item in Entries)
+        foreach (var item in _entries)
         {
             Console.WriteLine("\n\nEntry #" + _entryNumber + "of " + _entryCount +": " + item.EntryDate);
             Console.WriteLine("Prompt: " + item.Prompt1 + "\nReply: " + item.Response1 + "\n");
@@ -139,8 +139,28 @@ public class Journal {
     }
     public void NewJournal(){
         if (_entries.Count() == 0) {
-            if (_name = null) {
-                
+            if (_name == null) {
+                InteractiveSetName();
+            }
+            else {
+                Console.WriteLine($"This empty journal is already named {_name}. Would you like to rename it?");
+                Console.Write("Y/N ->");
+                var _confirm = Console.ReadLine().ToLower();
+                if (_confirm == "y") {InteractiveSetName();}
+            }
+        }
+        else{//If there are existing entries.
+            if (_name == null) {
+                    Console.WriteLine($"There are {_entries.Count()} entries stored in an unnamed journal.");
+                    InteractiveSetName();}
+            else {
+                Console.WriteLine($"There are already {_entries.Count()} entries in your journal named {_name}\nWould you like to remove the entries and rename the journal?");
+                Console.Write("Y/N ->");
+                var _confirm = Console.ReadLine().ToLower();
+                if (_confirm == "y") {
+                    _entries.Clear();
+                    InteractiveSetName();
+                }
             }
         }
     }

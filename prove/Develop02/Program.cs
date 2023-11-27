@@ -11,7 +11,7 @@ class Program
     static void Main(string[] args)
     {
         //Establish the collection of prompts and other variables to be used later on
-        private List<string> _prompts = new List<string>();
+        List<string> _prompts = new List<string>();
         _prompts.Add("What are three things you were grateful for today? Why were you grateful for them?");
         _prompts.Add("How do you feel physically and emotionally right now?");
         _prompts.Add("What was an act of kindness you watched or did today? How'd it make you feel?");
@@ -24,7 +24,7 @@ class Program
         
         string _options = "Welcome to the Journal Program Menu!\nPlease type the number for your desired option.\n1: Write New Journal Entry\n2: View Journal Entries\n3: Export Journal Entries\n4: Load Journal Entries\n5: Create Journal\n0: Exit\n\nSelection: ";
         string _input = "";
-        Journal journal = new Journal;
+        Journal journal = new Journal();
         int savedLastEntry = 1;
 
         //Menu();
@@ -36,11 +36,11 @@ class Program
                     Console.WriteLine("First, let's name the journal :-)");
                     journal.InteractiveSetName();
                 }
-                WriteNewEntry(_prompts); savedLastEntry = 0;}
+                journal.WriteNewEntry(_prompts); savedLastEntry = 0;}
             else if (_input == "2"){journal.Display();}
             else if (_input == "3"){journal.SaveEntries(); savedLastEntry = 1;}
             else if (_input == "4"){journal.LoadEntries();}
-            else if (_input == "5"){CreateNewJournal();}
+            else if (_input == "5"){journal.NewJournal();}
             else {}
         }
         //Last chance save check before exiting
@@ -48,7 +48,7 @@ class Program
             Console.WriteLine("Hold on, it looks like you didn't save your journal to a file!\nWould you like to before you quit? (y/n)");
             _input = Console.ReadLine();
             while ((_input != "y") && (_input != "n") ) {Console.WriteLine("I didn't understand that. Please enter 'y' or 'n'"); _input = Console.ReadLine();}
-            if (_input == "y") { journal.SaveEntries; }
+            if (_input == "y") { journal.SaveEntries(); }
 
         }
         Console.WriteLine("Program Exited Gracefully. I hope you have a lovely evening!");
