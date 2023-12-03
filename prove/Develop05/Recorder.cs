@@ -98,11 +98,12 @@ public class Recorder{
     public string CheckTitle(){
         return Titles.GetTitle(_points);
     }
-    public void DisplayPoints(int spacing = 0){
+    public void DisplayPointsAndTitle(int spacing = 0){
         while (spacing > 0){
             Console.Write("\n"); spacing = spacing - 1;
         }
-        Console.WriteLine("You have " + _points + "points.");
+        _title = CheckTitle();
+        Console.WriteLine("You have " + _points + "points and have the title of" + _title + ".");
     }
     public void SaveToFile(){
         //Figure out where they want to save the file
@@ -122,21 +123,67 @@ public class Recorder{
         int _checkSum = 0;
         Random rndm = new Random();
         int _length = _goals.Count();
-        string[] _export = new string[_length];
+        List<string> _export = new List<string>();
         foreach (Goal goal in _goals)
         {
             int chk = rndm.Next(0,64);
 
             string _str = goal.GetTypeNumber() + "|" + goal.GetName() + "|" + goal.GetDescription() + "|" + goal.GetTotalPoints() + "|" + goal.GetCompletedRepetitions() + "|" + goal.IsComplete() + "|" + chk;
             _checkSum = _checkSum + chk;
+            _export.Add(_str);
         }
         // //First line format is GoalExport|date|number of goals|check
-        DateTime date = new DateTime();
-        string _current = $"{date.Date}";
+        DateTime date = DateTime.UtcNow;
+        string _current = $"{date}";
         string _firstLine = "GoalExport|" + _current + "|" + _length + "|" + _checkSum;
+        using (StreamWriter outputFile = new StreamWriter(_filePath))
+        {
+            outputFile.WriteLine(_firstLine);
+            foreach (var item in _export)
+            {
+                outputFile.WriteLine(item);
+            }
+        }
 
     }}
-    public void LoadFromFile(){}
+    public void LoadFromFile(){
+        string _confirm = "n";
+        string filename = "";
+        while (_confirm != "y") {
+        Console.WriteLine("Please enter the filename for the journal you'd like to load in.");
+        filename = Console.ReadLine();
+        Console.WriteLine("You are trying to load " + filename + " . Is that correct? (y/n)");
+        _confirm = Console.ReadLine();
+        }
+        string[] lines = System.IO.File.ReadAllLines(filename);
+        bool _notFirst = false;
+        int _checkTotal = 0;
+        int _checkSum = 0;
+
+        foreach (string line in lines)
+        {
+            //First line format is GoalExport|date|number of goals|check
+            //Data format is type#|name|description|points|completedRepetitions|isComplete|check|requiredRepetitions
+            string[] parts = line.Split("|"); //Handle first line differently than others.
+            if(!_notFirst) {
+                _notFirst = true;
+                _checkTotal = int.Parse(parts[3]);
+
+            }
+            else {
+            Entry entry = new Entry();
+            entry.EntryDate = parts[0];
+            entry.Prompt1 = parts[1];
+            entry.Prompt2 = parts[2];
+            entry.Prompt3 = parts[3];
+            entry.Prompt4 = parts[4];
+            entry.Response1 = parts[5];
+            entry.Response2 = parts[6];
+            entry.Response3 = parts[7];
+            entry.Response4 = parts[8];
+            _entries.Add(entry);}
+        }
+    }
     private void ListOutGoals(){//Lists all the goals but doesn't do any other formatting
         var _counter = 0;
         foreach (Goal goal in _goals)

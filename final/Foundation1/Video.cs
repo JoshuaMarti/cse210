@@ -8,4 +8,13 @@ public class Video {
         Comment _comment = new Comment(name, text);
         _comments.Add(_comment);
     }
+    public Video(string title, string author, int length){
+        _title = title; _author = author; _length = length;
+    }
+    public void Display(){
+        Console.WriteLine("\n\n" + _title + " by " + _author + ", " + _length +"\n" + GetCommentCount() + " Comments:");
+        foreach (Comment comment in _comments){
+            Console.WriteLine(comment.GetName() + ":\n" + comment.GetText() + "\n");
+        }
+    }
 }
