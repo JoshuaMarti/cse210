@@ -17,11 +17,11 @@ class Program
         OutdoorGathering _outdoorGathering = new OutdoorGathering("Neighborhood Block Party", "Join us for a block party sponsored by the Phoenix Foundation!", "19920425", "19:00PT", _address2, "cloudy with a refreshing breeze.");
 
         //Test the Lecture
-        Console.WriteLine("Lecture\nShort Description:\n" + _lecture.GetShortDescription() + "\nStandard Details:\n" + _lecture.GetStandardDetails() + "\nFull Details:\n" + _lecture.GetFullDetails());
+        Console.WriteLine("\n\nLecture\nShort Description:\n" + _lecture.GetShortDescription() + "\n\nStandard Details:\n" + _lecture.GetStandardDetails() + "\n\nFull Details:\n" + _lecture.GetFullDetails());
         //Test the Reception
-        Console.WriteLine("Reception\nShort Description:\n" + _reception.GetShortDescription() + "\nStandard Details:\n" + _reception.GetStandardDetails() + "\nFull Details:\n" + _reception.GetFullDetails());
+        Console.WriteLine("\n\nReception\nShort Description:\n" + _reception.GetShortDescription() + "\n\nStandard Details:\n" + _reception.GetStandardDetails() + "\n\nFull Details:\n" + _reception.GetFullDetails());
         //Test the Outdoor Gathering
-        Console.WriteLine("Outdoor Gathering\nShort Description:\n" + _outdoorGathering.GetShortDescription() + "\nStandard Details:\n" + _outdoorGathering.GetStandardDetails() + "\nFull Details:\n" + _outdoorGathering.GetFullDetails());
+        Console.WriteLine("\n\nOutdoor Gathering\nShort Description:\n" + _outdoorGathering.GetShortDescription() + "\nStandard Details:\n\n" + _outdoorGathering.GetStandardDetails() + "\n\nFull Details:\n" + _outdoorGathering.GetFullDetails());
 
     }
 }
