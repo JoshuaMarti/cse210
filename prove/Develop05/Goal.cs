@@ -1,4 +1,6 @@
 //Goal Object Parent Class
+using System.Threading.Tasks.Dataflow;
+
 abstract class Goal {
     private string _name;
     private string _description;
@@ -6,8 +8,8 @@ abstract class Goal {
     private bool _isCompletable;
     protected bool _isCompleted = false;
     protected int _completedRepetitions = 0;
-    protected Goal(string name, string description, int points, bool completable){
-        _name = name; _description = description; _pointAmount = points; _isCompletable = completable;
+    protected Goal(string name, string description, int points, bool completable, int completedRepetitions, bool completed){
+        _name = name; _description = description; _pointAmount = points; _isCompletable = completable; _completedRepetitions = completedRepetitions; _isCompleted = completed;
     }
     public abstract int RecordEvent();
     protected string StrIsComplete(){
@@ -29,5 +31,7 @@ abstract class Goal {
     public virtual int GetCompletedRepetitions() { return _completedRepetitions;}
     //No longer getters
     public abstract bool CreateGoal();
+    public virtual int GetRequiredReps() {return 1;}
+    public virtual int GetBonus() {return 0;}
 
 }

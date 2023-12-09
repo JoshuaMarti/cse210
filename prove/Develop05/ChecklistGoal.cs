@@ -1,8 +1,14 @@
 class ChecklistGoal : Goal {
     private int _repetitions;
     private int _bonus;
-    public ChecklistGoal(string name, string description, int points, int _repetitions = 0, int _completedRepetitions = 0) :base(name, description, points, true){}
+    public ChecklistGoal(string name, string description, int points, int repetitions = 0, int _completedRepetitions = 0, bool isCompleted = false, int bonus = 0) :base(name, description, points, true, _completedRepetitions, isCompleted){
+        _repetitions = repetitions; _bonus = bonus;
+    }
     public override int RecordEvent(){
+        if (_isCompleted) {
+            Console.WriteLine("This goal has already been completed.");
+            return 0;
+        }
         _completedRepetitions = _completedRepetitions + 1;
         if (_completedRepetitions >= _repetitions){_isCompleted = true; return (GetPointAmount() + _bonus);}
         else{
@@ -29,5 +35,10 @@ class ChecklistGoal : Goal {
     public override int GetTypeNumber()
     {
         return 2;
+    }
+    public override int GetRequiredReps() { return _repetitions;}
+    public override int GetBonus()
+    {
+        return _bonus;
     }
 }
